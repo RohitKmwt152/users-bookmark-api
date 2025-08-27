@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  dev-db:
+    image: postgres:15
+    container_name: dev_postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: nestjs
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nest_network
+
+  test-db:
+    image: postgres:15
+    container_name: test_postgres_db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: nestjs
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nest_network
+
+volumes:
+  postgres_data:
+
+networks:
+  nest_network:
+    driver: bridge
