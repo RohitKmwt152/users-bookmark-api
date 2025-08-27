@@ -9,9 +9,9 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: nestjs
+      POSTGRES_DB: nestjs_dev
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_dev:/var/lib/postgresql/data
     networks:
       - nest_network
 
@@ -23,14 +23,15 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: nestjs
+      POSTGRES_DB: nestjs_test
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_test:/var/lib/postgresql/data
     networks:
       - nest_network
 
 volumes:
-  postgres_data:
+  postgres_data_dev:
+  postgres_data_test:
 
 networks:
   nest_network:
